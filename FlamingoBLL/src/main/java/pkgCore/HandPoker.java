@@ -28,28 +28,28 @@ public class HandPoker extends Hand {
 		Collections.sort(super.getCards());
 		Frequency();
 		
-		//Not quite sure how he wants us to implement this
 		if (isRoyalFlush()) {
-			HSP.geteHandStrength();
+			return HSP;
 		} else if (isStraightFlush()) {
-			HSP.geteHandStrength();
+			return HSP;
 		} else if (isFourOfAKind()) {
-			HSP.geteHandStrength();
+			return HSP;
 		} else if (isFullHouse()) {
-			HSP.geteHandStrength();
+			return HSP;
 		} else if(isFlush()) {
-			HSP.geteHandStrength();
+			return HSP;
+		} else if(isStraight()) {
+			return HSP;
 		} else if(isThreeOfAKind()) {
-			HSP.geteHandStrength();
+			return HSP;
 		} else if(isTwoPair()) {
-			HSP.geteHandStrength();
+			return HSP;
 		} else if(isPair()) {
-			HSP.geteHandStrength();
+			return HSP;
 		} else {
-			HSP.geteHandStrength();
+			return HSP;
 		}
 
-		return null;
 	}
 	private void Frequency() {
 
