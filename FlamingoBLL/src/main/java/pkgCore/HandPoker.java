@@ -119,9 +119,9 @@ public class HandPoker extends Hand {
 	public boolean isRoyalFlush() {
 		boolean bIsRoyalFlush = false;
 
-		if (isFlush() && 
-				super.getCards().get(eCardNo.FIRST.getiCardNo()).geteRank().getiRankNbr() == 14
-				&& super.getCards().get(eCardNo.SECOND.getiCardNo()).geteRank().getiRankNbr() == 13) {
+		if (isFlush() && isStraight() &&
+				super.getCards().get(eCardNo.FIRST.getiCardNo()).geteRank() == eRank.ACE
+				&& super.getCards().get(eCardNo.SECOND.getiCardNo()).geteRank() == eRank.KING) {
 			bIsRoyalFlush = true;
 			
 			HSP.seteHandStrength(eHandStrength.RoyalFlush);
@@ -161,9 +161,6 @@ public class HandPoker extends Hand {
 			HSP.seteHandStrength(eHandStrength.FourOfAKind);
 			HSP.setHiCard(super.getCards().get(CRC.get(0).getiCardPosition()));
 			HSP.setLoCard(null);
-			
-			ArrayList<Card> kickers = new ArrayList<Card>();
-			kickers.add(super.getCards().get(CRC.get(1).getiCardPosition()));
 			HSP.setKickers(FindTheKickers(CRC));
 			
 			this.setHS(HSP);
@@ -175,7 +172,7 @@ public class HandPoker extends Hand {
 	public boolean isFullHouse() {
 		boolean bisFullHouse = false;
 		
-		if ((CRC.get(0).getiCnt() == 3) && (CRC.get(1).getiCnt() == 2)) {
+		if (CRC.get(0).getiCnt() == 3 && CRC.get(1).getiCnt() == 2) {
 			bisFullHouse = true;
 
 			HSP.seteHandStrength(eHandStrength.FullHouse);
