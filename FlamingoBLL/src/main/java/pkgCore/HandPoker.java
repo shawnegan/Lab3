@@ -67,15 +67,6 @@ public class HandPoker extends Hand {
 		}
 		
 		Collections.sort(CRC);
-
-		for (CardRankCount crcount : CRC) {
-			System.out.print(crcount.getiCnt());
-			System.out.print(" ");
-			System.out.print(crcount.geteRank());
-			System.out.print(" ");
-			System.out.println(crcount.getiCardPosition());
-		}
-
 	}
 
 	private int CountRank(eRank eRank) {
