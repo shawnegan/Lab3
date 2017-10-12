@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 import org.junit.Test;
 
+import pkgEnum.eHandStrength;
 import pkgEnum.eRank;
 import pkgEnum.eSuit;
 
@@ -70,21 +71,16 @@ public class HandPokerTest {
 		return result;
 	}
 	@Test
-	public void test() {
-		
-		ArrayList<Card> cards = new ArrayList<Card>();
-		
-		cards.add(new Card(eSuit.CLUBS,eRank.TWO));
-		cards.add(new Card(eSuit.CLUBS,eRank.THREE));
-		cards.add(new Card(eSuit.CLUBS,eRank.FOUR));
-		cards.add(new Card(eSuit.SPADES,eRank.THREE));
-		cards.add(new Card(eSuit.SPADES,eRank.FOUR));
-		
-		HandScorePoker score = HandHelper(cards);
-		
+	public void TwoPairTest1() {
 		HandPoker hand = new HandPoker();
-		hand.setHS(score);
-		assertEquals((HandScorePoker)hand.ScoreHand());
+		
+		hand.AddCard(new Card(eSuit.CLUBS,eRank.TWO));
+		hand.AddCard(new Card(eSuit.CLUBS,eRank.THREE));
+		hand.AddCard(new Card(eSuit.CLUBS,eRank.FOUR));
+		hand.AddCard(new Card(eSuit.SPADES,eRank.THREE));
+		hand.AddCard(new Card(eSuit.SPADES,eRank.FOUR));
+		
+		assertEquals(((HandScorePoker) hand.ScoreHand()).geteHandStrength(),eHandStrength.TwoPair);
 	}
 
 }

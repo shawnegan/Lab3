@@ -11,10 +11,12 @@ import pkgEnum.eSuit;
 public class HandPoker extends Hand {
 	
 	private ArrayList<CardRankCount> CRC = null;
+	HandScorePoker HSP = (HandScorePoker)this.getHS();
+	
 	protected ArrayList<CardRankCount> getCRC() {
 		return CRC;
 	}
-	HandScorePoker HSP = (HandScorePoker)this.getHS();
+	
 	public HandPoker() {
 		this.setHS(new HandScorePoker());
 	}
@@ -102,12 +104,19 @@ public class HandPoker extends Hand {
 	public boolean isRoyalFlush() {
 		boolean bIsRoyalFlush = false;
 
-		if (this.isFlush() && super.getCards().get(eCardNo.FIRST.getiCardNo()).geteRank().getiRankNbr() == 14) {
+		if (this.isFlush() && 
+				super.getCards().get(eCardNo.FIRST.getiCardNo()).geteRank().getiRankNbr() == 14
+				&& super.getCards().get(eCardNo.SECOND.getiCardNo()).geteRank().getiRankNbr() == 13) {
 			bIsRoyalFlush = true;
+			
+			HSP.seteHandStrength(eHandStrength.RoyalFlush);
+			HSP.setHiCard(null);
+			HSP.setLoCard(null);
+			HSP.setKickers(null);
+			
+			this.setHS(HSP);
 		}
 		
-		HSP.seteHandStrength(eHandStrength.RoyalFlush);
-		this.setHS(HSP);
 		return bIsRoyalFlush;
 	}
 
@@ -116,9 +125,15 @@ public class HandPoker extends Hand {
 
 		if (this.isFlush() && this.isStraight()) {
 			bisStraightFlush = true;
+			
+			HSP.seteHandStrength(eHandStrength.StraightFlush);
+			HSP.setHiCard(super.getCards().get(eCardNo.FIRST.getiCardNo()));
+			HSP.setLoCard(null);
+			HSP.setKickers(null);
+			
+			this.setHS(HSP);
 		}
-		HSP.seteHandStrength(eHandStrength.StraightFlush);
-		this.setHS(HSP);
+		
 		return bisStraightFlush;
 	}
 
